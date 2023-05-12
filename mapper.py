@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import sys
+import string
 
 # get all lines from stdin
 for line in sys.stdin:
@@ -9,11 +10,15 @@ for line in sys.stdin:
     # make lower case
     line = line.lower()
 
+    # remove punctuation
+    for punctuation in string.punctuation:
+        line = line.replace(punctuation, '')
+
     # split the line into words; splits on any whitespace
     words = line.split()
 
     # output tuples (word, 1) in tab-delimited format
-    stopwords = set(['the', 'and', '.', ',' ';'])
+    stopwords = set(['the', 'and'])
 
     for word in words:
        if word not in stopwords:
